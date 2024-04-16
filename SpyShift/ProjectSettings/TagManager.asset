@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Enemy
   - Rock
+  - Wall
+  - Goal
+  - Key
   layers:
   - Default
   - TransparentFX

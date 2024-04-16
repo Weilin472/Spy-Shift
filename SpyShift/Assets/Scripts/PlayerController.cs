@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
     private Vector2 moveDir;
     private Rigidbody rigid;
@@ -21,11 +21,14 @@ public class PlayerMovement : MonoBehaviour
     public LineRenderer lineRenderer;
     private int linePointCount = 20;
 
+    //item
+    public bool hasKey;
+
     // Start is called before the first frame update
     void Start()
     {
         rigid = GetComponent<Rigidbody>();
-        lineRenderer.positionCount = linePointCount;
+     //   lineRenderer.positionCount = linePointCount;
     }
 
     // Update is called once per frame
@@ -140,6 +143,15 @@ public class PlayerMovement : MonoBehaviour
             isCrawling = !isCrawling;
             float Yscale = isCrawling ? 0.5f : 1;
             transform.localScale = new Vector3(1, Yscale, 1);
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag=="Key")
+        {
+            hasKey = true;
+            Destroy(other.gameObject);
         }
     }
 }
